@@ -4,6 +4,8 @@ const port = 8000;
 
 const routes = require('./routes');
 
+// add db
+const db = require('./config/mongoose');
 
 // set up express app to use EJS as the template engine
 app.set('view engine', 'ejs');
