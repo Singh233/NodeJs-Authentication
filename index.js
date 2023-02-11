@@ -2,12 +2,16 @@ const express = require('express');
 const app = express();
 const port = 8000;
 
+const routes = require('./routes');
+
+
 // set up express app to use EJS as the template engine
 app.set('view engine', 'ejs');
+app.set('views', './views');
 
-app.get('/', (req, res) => {
-    res.render('layout', {name: 'world!!'});
-});
+
+// use express router
+app.use('/', routes);
 
 app.listen(port, (error) => {
     if (error) {
