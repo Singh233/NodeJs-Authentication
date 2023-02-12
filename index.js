@@ -5,10 +5,12 @@ const expressLayouts = require('express-ejs-layouts');
 const sassMiddleware = require('node-sass-middleware');
 const path = require('path');
 const routes = require('./routes');
+const bodyParser = require('body-parser');
 
 // add db
 const db = require('./config/mongoose');
 
+app.use(express.urlencoded({extended: true})); // parses urlencoded bodie
 
 // compile scss to css
 app.use(sassMiddleware({

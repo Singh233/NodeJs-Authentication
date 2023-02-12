@@ -2,7 +2,10 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 70vh; }
+  height: 70vh;
+  background-color: #12171C;
+  border-radius: 20px;
+  padding: 0 30px; }
   .user-sign-in .welcome-div {
     margin: 20px;
     display: flex;
@@ -33,7 +36,7 @@
       display: flex;
       align-items: center;
       padding: 10px;
-      background-color: #212121;
+      background-color: #1A2733;
       border-radius: 10px;
       margin: 7px;
       color: white;
@@ -48,14 +51,16 @@
       font-size: 1rem;
       margin-left: 15px;
       width: 90%;
-      background-color: #212121;
+      background-color: #1A2733;
       border-radius: 10px;
       color: white;
       border: none; }
       .user-sign-in form #email-input:focus, .user-sign-in form #pass-input:focus {
         outline: none; }
       .user-sign-in form #email-input:-webkit-autofill, .user-sign-in form #pass-input:-webkit-autofill {
-        background-color: #212121 !important; }
+        -webkit-text-fill-color: white !important;
+        transition: background-color 5000s ease-in-out 0s;
+        font-size: 1rem; }
     .user-sign-in form #submit-button {
       margin: 5px;
       margin-top: 8px;
@@ -86,7 +91,7 @@
       font-size: 1.3rem;
       margin: 5px;
       padding: 10px 20px;
-      background-color: #212121;
+      background-color: #1A2733;
       border-radius: 15px;
       color: white;
       text-decoration: none; }

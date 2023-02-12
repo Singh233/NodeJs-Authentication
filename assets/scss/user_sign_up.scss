@@ -2,7 +2,7 @@ $button-color-blue: #0057D2;
 $button-hover-color: #D1EFFF;
 $button-color-red: #D20A0A; 
 $text-color-gray: #d0d0d0; 
-$button-color-gray: #212121; 
+$button-color-gray: #1A2733; 
 
 
 
@@ -11,7 +11,9 @@ $button-color-gray: #212121;
     flex-direction: column;
     justify-content: center;
     height: 70vh;
-
+    background-color: #12171C;
+    border-radius: 20px;
+    padding: 0 30px;
 
     .welcome-div {
         margin: 20px;
@@ -39,6 +41,11 @@ $button-color-gray: #212121;
             font-weight: 600;
 
             i {
+                background-color: white;
+                color: #12171C;
+                border-radius: 50%;
+                padding: 5px 6px;
+                font-size: 1rem;
                 margin: 5px;
             }
             
