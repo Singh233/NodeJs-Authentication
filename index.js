@@ -11,6 +11,7 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
+const MongoStore = require('connect-mongo');
 
 // add db
 const db = require('./config/mongoose');
@@ -43,7 +44,7 @@ app.set('layout extractScripts', true);
 app.set('view engine', 'ejs');
 app.set('views', './views');
 
-// configure express-session
+// configure express-session and mongo store is used to store the session cookie in the db
 app.use(session({
     name: 'Authentication',
     secret: 'something',
@@ -51,7 +52,16 @@ app.use(session({
     resave: false,
     cookie: {
         maxAge: (1000 * 60 * 100),
-    }
+    },
+    store: MongoStore.create(
+        {
+            mongoUrl: `mongodb+srv://sanam:${process.env.MONGODB_CLUSTER_PASSWORD}@cluster0.pxkvrhv.mongodb.net/?retryWrites=true&w=majority`,
+            autoRemove: 'disabled'
+        },
+        function(error) {
+            console.log(error || "---connect-mongodb setup ok---")
+        }
+    )
 }));
 
 app.use(passport.initialize());

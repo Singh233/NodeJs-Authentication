@@ -2,18 +2,6 @@ const { response } = require("express");
 const User = require('../models/user');
 
 
-
-
-module.exports.signUp = function(req, res) {
-    return res.render('user_sign_up.ejs');
-}
-
-
-module.exports.signIn = function(req, res) {
-    return res.render('user_sign_in.ejs');
-}
-
-
 // Function to create a new user
 module.exports.create = async function(req, res) {
     if (req.body.password != req.body.confirm_password) {

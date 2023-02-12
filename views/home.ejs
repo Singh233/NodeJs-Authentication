@@ -1,7 +1,14 @@
 
 
+<!-- If user is authenticated -->
+<% if (locals.user) { %> 
+    <h1>Home page</h1>
+    <p> <%= user.name %> </p>
+<% } else { %>
 
+    <!-- else display the sign in / up form  -->
 
-<%- include('user_sign_in'); %>
+    <%- include('user_sign_in'); %>
+    <%- include('user_sign_up'); %>
 
-<%- include('user_sign_up'); %>
+<% } %>
