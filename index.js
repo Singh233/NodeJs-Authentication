@@ -7,6 +7,11 @@ const path = require('path');
 const routes = require('./routes');
 const bodyParser = require('body-parser');
 
+// For session cookie
+const session = require('express-session');
+const passport = require('passport');
+const passportLocal = require('./config/passport-local-strategy');
+
 // add db
 const db = require('./config/mongoose');
 
@@ -32,9 +37,25 @@ app.use(expressLayouts);
 app.set('layout extractStyles', true);
 app.set('layout extractScripts', true);
 
+
+
 // set up express app to use EJS as the template engine
 app.set('view engine', 'ejs');
 app.set('views', './views');
+
+// configure express-session
+app.use(session({
+    name: 'Authentication',
+    secret: 'something',
+    saveUninitialized: false,
+    resave: false,
+    cookie: {
+        maxAge: (1000 * 60 * 100),
+    }
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 
 // use express router
