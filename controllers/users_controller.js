@@ -41,3 +41,16 @@ module.exports.create = async function(req, res) {
 module.exports.createSession = async function(req, res) {
     return res.redirect('/');
 }
+
+
+
+// Function to sign out and destroy session
+module.exports.destroySession = function(req, res) {
+    req.logout(function(error) {
+        if (error) {
+            console.log("error signing out");
+            return;
+        }
+    });
+    return res.redirect('/');
+}
