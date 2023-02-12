@@ -4,7 +4,7 @@
 
 
 module.exports.home = async function(req, res) {
-    return res.render('layout.ejs', {
+    return res.render('home.ejs', {
         title: 'NodeJs Authentication',
         name: 'World!',
     })

@@ -6,6 +6,7 @@ const signInController = require('../controllers/users_controller');
 const signUpController = require('../controllers/users_controller');
 
 router.get('/sign-up', signUpController.signUp);
+router.get('/sign-in', signInController.signIn);
 
 
 module.exports = router;
