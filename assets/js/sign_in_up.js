@@ -17,11 +17,14 @@ togglePassword.addEventListener('click', function (e) {
 
 const toggleSignInPage = document.querySelector('#toggle-sign-in-page');
 const toggleSignUpPage = document.querySelector('#toggle-sign-up-page');
+const toggleForgotPasswordPage = document.querySelector('#toggle-forgot-password-page');
+const toggleBackPage = document.querySelector('#toggle-back-page');
+
 const signInContainer = document.querySelector('#sign-in-container');
 const signUpContainer = document.querySelector('#sign-up-container');
+const forgotPasswordContainer = document.querySelector('#forgot-password-container');
 
 toggleSignInPage.addEventListener('click', function (e) {
-    // toggle the eye slash icon
     signInContainer.classList.add('animate__fadeOutLeft');
 
     setTimeout(() => {
@@ -36,7 +39,6 @@ toggleSignInPage.addEventListener('click', function (e) {
 
 
 toggleSignUpPage.addEventListener('click', function (e) {
-    // toggle the eye slash icon
     signInContainer.classList.remove('animate__fadeOutLeft');
     signInContainer.classList.add('animate__fadeInLeft');
     signUpContainer.classList.add('animate__fadeOutRight');
@@ -46,5 +48,35 @@ toggleSignUpPage.addEventListener('click', function (e) {
         signUpContainer.classList.toggle('remove');
     }, 550);
     
+});
+
+
+toggleForgotPasswordPage.addEventListener('click', function (e) {
+
+    signInContainer.classList.add('animate__bounceOut');
+    signInContainer.classList.remove('animate__zoomIn');
+
+    setTimeout(() => {
+        signInContainer.classList.toggle('remove');
+        forgotPasswordContainer.classList.toggle('remove');
+        forgotPasswordContainer.classList.add('animate__zoomIn');
+
+    }, 550);
+    forgotPasswordContainer.classList.remove('animate__bounceOut');
+    
+});
+
+toggleBackPage.addEventListener('click', function (e) {
+    signInContainer.classList.remove('animate__bounceOut');
+    forgotPasswordContainer.classList.add('animate__bounceOut');
+    forgotPasswordContainer.classList.remove('animate__zoomIn');
+
+    setTimeout(() => {
+        signInContainer.classList.toggle('remove');
+        forgotPasswordContainer.classList.toggle('remove');
+        signInContainer.classList.add('animate__zoomIn');
+
+    }, 550);
+
 });
 

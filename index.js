@@ -5,6 +5,7 @@ const expressLayouts = require('express-ejs-layouts');
 const sassMiddleware = require('node-sass-middleware');
 const path = require('path');
 const routes = require('./routes');
+const passwordReset = require('./routes/passwordReset');
 const bodyParser = require('body-parser');
 
 // For session cookie
@@ -74,6 +75,7 @@ app.use(passport.setAuthenticatedUser);
 
 // use express router
 app.use('/', routes);
+app.use("/users/password-reset", passwordReset);
 
 app.listen(port, (error) => {
     if (error) {

@@ -43,7 +43,13 @@ router.get('/auth/github', passport.authenticate('github', {scope: ['user:email'
 
 router.get('/auth/github/callback', passport.authenticate('github', {
     failureRedirect: '/',
-    
 }), usersController.createSession)
+
+
+router.post('/forgot-password', usersController.forgotPassword);
+
+
+// router.get("/reset-password/:userId/:token", usersController.resetPassword);
+
 
 module.exports = router;

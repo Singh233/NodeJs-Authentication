@@ -1,5 +1,9 @@
 const { response } = require("express");
 const User = require('../models/user');
+const Token = require('../models/token');
+const sendEmail = require('../config/sendEmail');
+const crypto = require('crypto');
+
 
 
 // Function to create a new user
@@ -53,4 +57,44 @@ module.exports.destroySession = function(req, res) {
         }
     });
     return res.redirect('/');
+    
 }
+
+
+
+
+
+
+
+// forgot / reset password function
+module.exports.forgotPassword = async function(req, res) {
+    try {
+
+        const user = await User.findOne({ email: req.body.email });
+        if (!user) {
+            console.log('User with given email doesnt exist');
+            return res.redirect('back');
+
+        }
+
+        let token = await Token.findOne({ userId: user._id });
+        if (!token) {
+            token = await new Token({
+                userId: user._id,
+                token: crypto.randomBytes(32).toString("hex"),
+            }).save();
+        }
+
+        const link = `http://localhost:8000/users/password-reset/${user._id}/${token.token}`;
+        await sendEmail(user.email, "Password reset", link);
+
+        res.send("password reset link sent to your email account");
+    } catch (error) {
+        res.send("An error occured");
+        console.log(error);
+    }
+}
+
+
+
+

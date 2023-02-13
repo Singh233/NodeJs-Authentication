@@ -7,7 +7,7 @@ const crypto = require('crypto');
 
 
 
-// Configure passport and google auth strategy
+// Configure passport and Github auth strategy
 
 passport.use(new GitHubStrategy({
     clientID: process.env.NODEJS_GITHUB_CLIENT_ID,
