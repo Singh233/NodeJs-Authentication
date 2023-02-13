@@ -3,9 +3,10 @@ const mongoose = require('mongoose');
 
 // Creating user schema
 const userSchema = new mongoose.Schema({
-    email: { type: String, required: true, unique: true},
-    password: { type: String, required: true},
+    email: { type: String, unique: true},
+    password: { type: String},
     name: { type: String, required: true},
+    facebook_id: {type: String} // for facebook auth
 }, {
     timestamps: true
 });

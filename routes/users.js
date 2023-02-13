@@ -26,5 +26,13 @@ router.get('/auth/google/callback', passport.authenticate('google', {
     
 }), usersController.createSession)
 
+// passport facebook oAuth
+router.get('/auth/facebook', passport.authenticate('facebook', {scope: ['public_profile', 'email']}));
+
+
+router.get('/auth/facebook/callback', passport.authenticate('facebook', {
+    failureRedirect: '/',
+    
+}), usersController.createSession)
 
 module.exports = router;
