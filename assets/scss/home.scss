@@ -33,3 +33,19 @@ $button-color-gray: #1A2733;
 
     }
 }
+
+
+@media screen and (max-width: "480px") {
+
+
+    .home-container {
+        
+        h1 {
+            margin: 10px;
+            font-size: 1.3rem;
+        }
+    
+        #sign-out-button {
+        }
+    }
+}

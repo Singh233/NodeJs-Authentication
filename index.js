@@ -20,6 +20,9 @@ const MongoStore = require('connect-mongo');
 // add db
 const db = require('./config/mongoose');
 
+const flash = require('connect-flash');
+const customWare = require('./config/middleware');
+
 app.use(express.urlencoded({extended: true})); // parses urlencoded bodie
 
 // compile scss to css
@@ -72,6 +75,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(passport.setAuthenticatedUser);
 
+app.use(flash());
+app.use(customWare.setFlash);
 
 // use express router
 app.use('/', routes);

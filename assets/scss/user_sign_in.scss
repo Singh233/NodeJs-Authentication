@@ -193,9 +193,15 @@ $button-color-gray: #1A2733;
         max-width: 88vw;
 
         .welcome-div {
+            margin: 0;
+            margin-bottom: 20px;
             p {
+                position: relative;
+                font-size: 2rem;
                 span {
-                    font-size: 2.3rem;
+                    position: relative;
+                    width: 100%;
+                    font-size: 2rem;
                 }
             }
         }

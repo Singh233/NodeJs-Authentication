@@ -9,13 +9,16 @@ const crypto = require('crypto');
 // Function to create a new user
 module.exports.create = async function(req, res) {
     if (req.body.password != req.body.confirm_password) {
-        return res.redirect('back');
+        req.flash('info', 'Password mismatch');
+        return res.redirect('/');
     }
 
     User.findOne({email: req.body.email}, function(error, user) {
         if (error) {
+            req.flash('info', 'Something went wrong please try again later');
+
             console.log("Error in finding user while signing up");
-            return;
+            return res.redirect('/');
         }
 
         // If user doesn't exist
@@ -26,10 +29,13 @@ module.exports.create = async function(req, res) {
                     console.log("Error in creating user while signing up");
                     return;
                 }
+                req.flash('success', 'Account created, please continue to Sign in!');
+
                 console.log('User created successfully');
                 return res.redirect('/');
             })
         } else {
+            req.flash('info', 'User already exist!');
             // If user already exist
             return res.redirect('back');
         }
@@ -43,6 +49,13 @@ module.exports.create = async function(req, res) {
 
 // Function to sign in user using session 
 module.exports.createSession = async function(req, res) {
+    
+    if (req.user) {
+        req.flash('success', 'Logged in Successfully');
+    } else {
+        req.flash('error', 'Invalid Username/Password!');
+    }
+
     return res.redirect('/');
 }
 
@@ -50,12 +63,15 @@ module.exports.createSession = async function(req, res) {
 
 // Function to sign out and destroy session
 module.exports.destroySession = function(req, res) {
+    
     req.logout(function(error) {
         if (error) {
             console.log("error signing out");
+            req.flash('error', 'Something went wrong!');
             return;
         }
     });
+    req.flash('success', 'Logged Out');
     return res.redirect('/');
     
 }
@@ -72,6 +88,7 @@ module.exports.forgotPassword = async function(req, res) {
 
         const user = await User.findOne({ email: req.body.email });
         if (!user) {
+            req.flash('warning', "User with given email doesnt exist");
             console.log('User with given email doesnt exist');
             return res.redirect('back');
 
@@ -88,10 +105,11 @@ module.exports.forgotPassword = async function(req, res) {
         const link = `http://localhost:8000/users/password-reset/${user._id}/${token.token}`;
         await sendEmail(user.email, "Password reset", link);
 
-        res.send("password reset link sent to your email account");
+        req.flash('success', "Password reset link sent to your email account!");
+        return res.redirect('/');
     } catch (error) {
-        res.send("An error occured");
-        console.log(error);
+        req.flash('warning', "An error occured, try again later!");
+        return res.redirect('/');
     }
 }
 

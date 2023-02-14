@@ -119,5 +119,13 @@
 @media screen and (max-width: 480px) {
   .user-sign-in {
     max-width: 88vw; }
-    .user-sign-in .welcome-div p span {
-      font-size: 2.3rem; } }
+    .user-sign-in .welcome-div {
+      margin: 0;
+      margin-bottom: 20px; }
+      .user-sign-in .welcome-div p {
+        position: relative;
+        font-size: 2rem; }
+        .user-sign-in .welcome-div p span {
+          position: relative;
+          width: 100%;
+          font-size: 2rem; } }

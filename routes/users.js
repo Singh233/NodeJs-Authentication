@@ -11,7 +11,10 @@ router.post('/create', usersController.create);
 // route to create new session on sign in using passport as middleware
 router.post('/create-session', passport.authenticate(
     'local',
-    {failureMessage: '/'}
+    {failureRedirect: '/'},
+    
+    
+    
 ), usersController.createSession);
 
 
