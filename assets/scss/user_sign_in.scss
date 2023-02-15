@@ -120,9 +120,23 @@ $button-color-gray: #1A2733;
                 align-self: flex-end;
                 margin: 5px;
                 margin-right: 10px;
+
+                transition: 0.2s all ease-out;
+
+                &:hover {
+                    color: #367ee2;
+                }
             }
 
             #submit-button {
+                --primary-color: #645bff;
+                --secondary-color: #fff;
+                --hover-color: #111;
+                --arrow-width: 10px;
+                --arrow-stroke: 2px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
                 margin: 5px;
                 margin-top: 8px;
                 padding: 10px;
@@ -134,6 +148,50 @@ $button-color-gray: #1A2733;
                 font-weight: 500;
                 text-decoration: none;
                 background: linear-gradient(130deg, rgba(18,119,243,1) 0%, rgba(11,73,149,1) 97%);
+                transition: 0.2s all ease-out;
+                cursor: pointer;
+
+                .arrow-wrapper {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-left: 5px;
+                }
+                
+                .arrow {
+                    margin-top: 1px;
+                    width: var(--arrow-width);
+                    background: var(--primary-color);
+                    height: var(--arrow-stroke);
+                    position: relative;
+                    transition: 0.2s;
+                }
+                
+                .arrow::before {
+                    content: "";
+                    box-sizing: border-box;
+                    position: absolute;
+                    border: solid var(--secondary-color);
+                    border-width: 0 var(--arrow-stroke) var(--arrow-stroke) 0;
+                    display: inline-block;
+                    top: -3px;
+                    right: 3px;
+                    transition: 0.2s;
+                    padding: 3px;
+                    transform: rotate(-45deg);
+                }
+                
+                &:hover {
+                    background: linear-gradient(130deg, rgba(18, 119, 243, 0.747) 0%, rgba(11, 73, 149, 0.699) 97%);
+                }
+                
+                &:hover .arrow {
+                    background: var(--secondary-color);
+                }
+                
+                &:hover .arrow:before {
+                    right: 0;
+                }
 
             }
         }
@@ -149,7 +207,12 @@ $button-color-gray: #1A2733;
                 text-decoration: none;
                 font-size: 1rem;
                 font-weight: 700;
-                color: $button-color-blue
+                color: $button-color-blue;
+                transition: 0.2s all ease-out;
+
+                &:hover {
+                    color: #367ee2;
+                }
 
 
             }

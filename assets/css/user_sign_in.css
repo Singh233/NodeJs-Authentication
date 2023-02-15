@@ -74,8 +74,19 @@
       .user-sign-in .outline-effect form .forgot-password {
         align-self: flex-end;
         margin: 5px;
-        margin-right: 10px; }
+        margin-right: 10px;
+        transition: 0.2s all ease-out; }
+        .user-sign-in .outline-effect form .forgot-password:hover {
+          color: #367ee2; }
       .user-sign-in .outline-effect form #submit-button {
+        --primary-color: #645bff;
+        --secondary-color: #fff;
+        --hover-color: #111;
+        --arrow-width: 10px;
+        --arrow-stroke: 2px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         margin: 5px;
         margin-top: 8px;
         padding: 10px;
@@ -86,7 +97,39 @@
         border: none;
         font-weight: 500;
         text-decoration: none;
-        background: linear-gradient(130deg, #1277f3 0%, #0b4995 97%); }
+        background: linear-gradient(130deg, #1277f3 0%, #0b4995 97%);
+        transition: 0.2s all ease-out;
+        cursor: pointer; }
+        .user-sign-in .outline-effect form #submit-button .arrow-wrapper {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-left: 5px; }
+        .user-sign-in .outline-effect form #submit-button .arrow {
+          margin-top: 1px;
+          width: var(--arrow-width);
+          background: var(--primary-color);
+          height: var(--arrow-stroke);
+          position: relative;
+          transition: 0.2s; }
+        .user-sign-in .outline-effect form #submit-button .arrow::before {
+          content: "";
+          box-sizing: border-box;
+          position: absolute;
+          border: solid var(--secondary-color);
+          border-width: 0 var(--arrow-stroke) var(--arrow-stroke) 0;
+          display: inline-block;
+          top: -3px;
+          right: 3px;
+          transition: 0.2s;
+          padding: 3px;
+          transform: rotate(-45deg); }
+        .user-sign-in .outline-effect form #submit-button:hover {
+          background: linear-gradient(130deg, rgba(18, 119, 243, 0.747) 0%, rgba(11, 73, 149, 0.699) 97%); }
+        .user-sign-in .outline-effect form #submit-button:hover .arrow {
+          background: var(--secondary-color); }
+        .user-sign-in .outline-effect form #submit-button:hover .arrow:before {
+          right: 0; }
     .user-sign-in .outline-effect .option-text {
       color: #d0d0d0;
       margin: 10px;
@@ -96,7 +139,10 @@
         text-decoration: none;
         font-size: 1rem;
         font-weight: 700;
-        color: #0057D2; }
+        color: #0057D2;
+        transition: 0.2s all ease-out; }
+        .user-sign-in .outline-effect .option-text a:hover {
+          color: #367ee2; }
     .user-sign-in .outline-effect .auth-options {
       display: flex;
       justify-content: center;
