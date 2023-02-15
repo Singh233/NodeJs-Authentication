@@ -1,6 +1,6 @@
 const User = require('../models/user');
 const Token = require('../models/token');
-const sendEmail = require('../config/sendEmail');
+const sendEmail = require('../mailers/reset-password-mailer');
 const crypto = require('crypto');
 const express = require("express");
 const router = express.Router();
@@ -42,16 +42,34 @@ router.post("/:userId/:token", async (req, res) => {
         });
         if (!token) return res.status(400).send("Invalid link or expired");
 
+        if (req.body.password != req.body.confirm_password) {
+            req.flash('info', 'Password mismatch');
+            return res.redirect('back');
+        }
+
         user.password = req.body.password;
         await user.save();
         await token.delete();
 
-        res.send("password reset sucessfully.");
+        req.logout(function(error) {
+            if (error) {
+                console.log("error signing out");
+                req.flash('error', 'Something went wrong!');
+                return;
+            }
+        });
+        req.flash('success', "Password updated! Continue to Sign in");
+
+        return res.redirect('/');
 
         
     } catch (error) {
         res.send("An error occured");
         console.log(error);
+        req.flash('warning', "An error occured, try again later!");
+
+        return res.redirect('/');
+
     }
 });
 

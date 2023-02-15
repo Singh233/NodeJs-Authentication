@@ -1,8 +1,10 @@
 const { response } = require("express");
 const User = require('../models/user');
 const Token = require('../models/token');
-const sendEmail = require('../config/sendEmail');
+const sendEmail = require('../mailers/reset-password-mailer');
 const crypto = require('crypto');
+const queue = require('../config/kue');
+const resetPasswordEmailWorker = require('../workers/reset_password_email_worker');
 
 
 
@@ -102,8 +104,19 @@ module.exports.forgotPassword = async function(req, res) {
             }).save();
         }
 
-        const link = `http://localhost:8000/users/password-reset/${user._id}/${token.token}`;
-        await sendEmail(user.email, "Password reset", link);
+        const link = `http://localhost:8000/users/password-reset/${user._id}/${token.token} follow this link to reset your password.\nTeam NodeJs Authentication.`;
+        // await sendEmail(user.email, "Password reset link", link);
+        const data = {
+            email: user.email,
+            link: link
+        }
+        let job = queue.create('emails', data).save(function(error) {
+            if (error) {
+                console.log("Error in creatign a queue");
+                return;
+            }
+            console.log(job.id);
+        });
 
         req.flash('success', "Password reset link sent to your email account!");
         return res.redirect('/');
