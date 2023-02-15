@@ -17,8 +17,13 @@
     <link rel="stylesheet" href="/css/forgot_password.css">
     <link rel="stylesheet" href="/css/password_reset.css">
     <link rel="stylesheet" href="/css/iziToast.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/menu.css">
 </head>
 <body>
+    <%- include('navbar'); %>
+    <%- include('menu'); %>
+    
     <div id="main-body">
         <%- body %>
     </div>
@@ -32,9 +37,12 @@
                 title: 'Success',
                 message: '<%= flash.success %>',
                 theme: 'dark',
-                backgroundColor: '#0057D2',
+                backgroundColor: 'linear-gradient(130deg, rgba(18,119,243,1) 0%, rgba(11,73,149,1) 97%)',
                 position: 'topCenter',
                 progressBarColor: 'white',
+                transitionInMobile: 'fadeInUp',
+                transitionOutMobile: 'fadeOutUp',
+                
             });
         <% } %>
 
@@ -46,6 +54,8 @@
                 backgroundColor: '#AA0808',
                 position: 'topCenter',
                 progressBarColor: 'white',
+                transitionInMobile: 'fadeInUp',
+                transitionOutMobile: 'fadeOutUp',
             });
         <% } %>
 
@@ -57,6 +67,8 @@
                 backgroundColor: '#FFB300',
                 position: 'topCenter',
                 progressBarColor: 'white',
+                transitionInMobile: 'fadeInUp',
+                transitionOutMobile: 'fadeOutUp',
             });
 
             // On redirect show the signupcontainer
@@ -74,6 +86,8 @@
                 backgroundColor: '#AA0808',
                 position: 'topCenter',
                 progressBarColor: 'white',
+                transitionInMobile: 'fadeInUp',
+                transitionOutMobile: 'fadeOutUp',
             });
             
             // On redirect show the forgotpasswordcontainer

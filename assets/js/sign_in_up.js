@@ -26,6 +26,8 @@ const forgotPasswordContainer = document.querySelector('#forgot-password-contain
 
 toggleSignInPage.addEventListener('click', function (e) {
     signInContainer.classList.add('animate__fadeOutLeft');
+    signInContainer.classList.remove('animate__zoomIn');
+    signInContainer.classList.remove('animate__bounceOut');
 
     setTimeout(() => {
         signInContainer.classList.toggle('remove');
@@ -52,9 +54,13 @@ toggleSignUpPage.addEventListener('click', function (e) {
 
 
 toggleForgotPasswordPage.addEventListener('click', function (e) {
-
-    signInContainer.classList.add('animate__bounceOut');
+    // remove previous animations first
+    signInContainer.classList.remove('animate__fadeOutLeft');
+    signInContainer.classList.remove('animate__fadeInLeft');
     signInContainer.classList.remove('animate__zoomIn');
+
+    // add new animation
+    signInContainer.classList.add('animate__bounceOut');
 
     setTimeout(() => {
         signInContainer.classList.toggle('remove');
@@ -67,9 +73,12 @@ toggleForgotPasswordPage.addEventListener('click', function (e) {
 });
 
 toggleBackPage.addEventListener('click', function (e) {
+    // remove previous animations first
     signInContainer.classList.remove('animate__bounceOut');
-    forgotPasswordContainer.classList.add('animate__bounceOut');
+    signInContainer.classList.remove('animate__fadeInLeft');
     forgotPasswordContainer.classList.remove('animate__zoomIn');
+
+    forgotPasswordContainer.classList.add('animate__bounceOut');
 
     setTimeout(() => {
         signInContainer.classList.toggle('remove');
