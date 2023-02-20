@@ -2,6 +2,7 @@ const passport = require('passport');
 const GitHubStrategy = require('passport-github2').Strategy;
 const User = require('../models/user');
 const crypto = require('crypto');
+const env = require('./environment');
 
 
 
@@ -10,9 +11,9 @@ const crypto = require('crypto');
 // Configure passport and Github auth strategy
 
 passport.use(new GitHubStrategy({
-    clientID: process.env.NODEJS_GITHUB_CLIENT_ID,
-    clientSecret: process.env.NODEJS_GITHUB_CLIENT_SECRET,
-    callbackURL: "http://localhost:8000/users/auth/github/callback"
+    clientID: env.github_clientID,
+    clientSecret: env.github_clientSecret,
+    callbackURL: env.github_callbackURL
     },
     function(accessToken, refreshToken, profile, done) {
         console.log(profile);

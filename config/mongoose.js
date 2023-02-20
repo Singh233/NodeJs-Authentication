@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
+const env = require('./environment');
 
 
 // Connect to the Mongodb atlas(cloud) Database
-mongoose.connect(`mongodb+srv://sanam:${process.env.MONGODB_CLUSTER_PASSWORD}@cluster0.pxkvrhv.mongodb.net/?retryWrites=true&w=majority`)
+mongoose.connect(env.db);
 
 // Acquire the connection
 const db = mongoose.connection;

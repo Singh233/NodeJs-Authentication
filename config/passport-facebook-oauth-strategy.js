@@ -3,6 +3,7 @@ const FacebookStrategy = require('passport-facebook').Strategy;
 const User = require('../models/user');
 const crypto = require('crypto');
 
+const env = require('./environment');
 
 
 
@@ -10,9 +11,9 @@ const crypto = require('crypto');
 // Configure passport and google auth strategy
 
 passport.use(new FacebookStrategy({
-    clientID: process.env.NODEJS_FACEBOOK_CLIENT_ID,
-    clientSecret: process.env.NODEJS_FACEBOOK_CLIENT_SECRET,
-    callbackURL: "http://localhost:8000/users/auth/facebook/callback"
+    clientID: env.fb_clientID,
+    clientSecret: env.fb_clientSecret,
+    callbackURL: env.fb_callbackURL
     },
     function(accessToken, refreshToken, profile, done) {
         console.log(profile);

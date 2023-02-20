@@ -3,6 +3,7 @@ const GoogleStrategy = require('passport-google-oauth2').Strategy;
 const User = require('../models/user');
 const crypto = require('crypto');
 
+const env = require('./environment');
 
 
 
@@ -10,9 +11,9 @@ const crypto = require('crypto');
 // Configure passport and google auth strategy
 
 passport.use(new GoogleStrategy({
-        clientID: process.env.NODEJS_GOOGLE_CLIENT_ID,
-        clientSecret: process.env.NODEJS_GOOGLE_CLIENT_SECRET,
-        callbackURL: process.env.NODEJS_GOOGLE_CALLBACK_URL,
+        clientID: env.google_clientID,
+        clientSecret: env.google_clientSecret,
+        callbackURL: env.google_callbackURL,
     },
     function(accessToken, refreshToken, profile, done) {
 
