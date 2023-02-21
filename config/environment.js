@@ -17,7 +17,7 @@ const development = {
     fb_callbackURL: "http://localhost:8000/users/auth/facebook/callback",
 
     db: process.env.NODEJS_DB,
-
+    password_link: 'http://localhost:8000/users/password-reset/'
 }
 
 const production = {
@@ -35,8 +35,9 @@ const production = {
     fb_callbackURL: "https://sanam.tech/users/auth/facebook/callback",
 
     db: process.env.NODEJS_DB,
+    password_link: 'https://sanam.tech/users/password-reset/'
 
 
 }
 
-module.exports = development;
+module.exports = production;

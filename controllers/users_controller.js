@@ -5,7 +5,11 @@ const sendEmail = require('../mailers/reset-password-mailer');
 const crypto = require('crypto');
 const queue = require('../config/kue');
 const resetPasswordEmailWorker = require('../workers/reset_password_email_worker');
+const env = require('../config/environment');
 
+// encrypting the password using bcrypt
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 
 // Function to create a new user
@@ -26,16 +30,28 @@ module.exports.create = async function(req, res) {
         // If user doesn't exist
         if (!user) {
             // Create new user
-            User.create(req.body, function(error, user) {
-                if (error) {
-                    console.log("Error in creating user while signing up");
-                    return;
-                }
-                req.flash('success', 'Account created, please continue to Sign in!');
+            const password = req.body.password;
 
-                console.log('User created successfully');
-                return res.redirect('/');
-            })
+            // Hashing the password
+            bcrypt.genSalt(saltRounds).then((salt) => {
+                bcrypt.hash(password, salt)
+                .then((hash) => {
+                    User.create({...req.body, password: hash}, function(error, user) {
+                        if (error) {
+                            console.log("Error in creating user while signing up");
+                            return;
+                        }
+                        req.flash('success', 'Account created, please continue to Sign in!');
+        
+                        console.log('User created successfully');
+                        return res.redirect('/');
+                    })
+                }).catch((error) => {
+                    console.log("Error in hashing password");
+                    return;
+                });
+            });
+            
         } else {
             req.flash('info', 'User already exist!');
             // If user already exist
@@ -104,7 +120,7 @@ module.exports.forgotPassword = async function(req, res) {
             }).save();
         }
 
-        const link = `http://localhost:8000/users/password-reset/${user._id}/${token.token} follow this link to reset your password.\nTeam NodeJs Authentication.`;
+        const link = `${env.password_link}${user._id}/${token.token} follow this link to reset your password.\nTeam NodeJs Authentication.`;
         // await sendEmail(user.email, "Password reset link", link);
         const data = {
             email: user.email,

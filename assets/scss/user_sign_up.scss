@@ -259,11 +259,17 @@ $button-color-gray: #1A2733;
     .user-sign-up {
         max-width: 88vw;
 
-        .welcome-div {
-            p {
-                font-size: 1.3rem;
+        .outline-effect {
+            height: 80vh;
+
+            .welcome-div {
+                p {
+                    font-size: 1.3rem;
+                }
             }
         }
+
+        
 
     }
 }

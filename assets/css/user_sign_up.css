@@ -164,5 +164,7 @@
 @media screen and (max-width: 480px) {
   .user-sign-up {
     max-width: 88vw; }
-    .user-sign-up .welcome-div p {
-      font-size: 1.3rem; } }
+    .user-sign-up .outline-effect {
+      height: 80vh; }
+      .user-sign-up .outline-effect .welcome-div p {
+        font-size: 1.3rem; } }

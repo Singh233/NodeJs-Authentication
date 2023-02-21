@@ -10,6 +10,8 @@
   "author": "Sanambir Singh",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.1.0",
+    "bcryptjs": "^2.4.3",
     "connect-flash": "^0.1.1",
     "connect-mongo": "^4.6.0",
     "crypto": "^1.0.1",
