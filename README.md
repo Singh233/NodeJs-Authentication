@@ -1,5 +1,5 @@
 
-# 🥘 NodeJs Authentication App
+#  NodeJs Authentication App
 
 An authentication system is a vital component of any web application that involves user registration, login, and authentication. It helps ensure that only authorized users can access certain features and data within the application.
 
