@@ -5,6 +5,7 @@ module.exports.sendEmail = async (email, subject, text) => {
     try {
         const transporter = nodemailer.createTransport({
             host: env.host,
+            service: 'iCloud',
             port: 587,
             secure: false,
             auth: {
