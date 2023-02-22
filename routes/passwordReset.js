@@ -4,6 +4,9 @@ const sendEmail = require('../mailers/reset-password-mailer');
 const crypto = require('crypto');
 const express = require("express");
 const router = express.Router();
+// encrypting the password using bcrypt
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 // Router to direct user to reset password page
 router.get("/:userId/:token", async (req, res) => {
@@ -46,10 +49,19 @@ router.post("/:userId/:token", async (req, res) => {
             req.flash('info', 'Password mismatch');
             return res.redirect('back');
         }
-
-        user.password = req.body.password;
-        await user.save();
-        await token.delete();
+        // Hashing the password
+        bcrypt.genSalt(saltRounds).then((salt) => {
+            bcrypt.hash(req.body.password, salt)
+            .then(async (hash) => {
+                user.password = hash;
+                await user.save();
+                await token.delete();
+            }).catch((error) => {
+                console.log("Error in hashing password");
+                return;
+            });
+        });
+        
 
         req.logout(function(error) {
             if (error) {

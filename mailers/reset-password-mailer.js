@@ -1,20 +1,21 @@
 const nodemailer = require("nodemailer");
+const env = require("../config/environment");
 
 module.exports.sendEmail = async (email, subject, text) => {
     try {
         const transporter = nodemailer.createTransport({
-            host: 'smtp.gmail.com',
-            service: 'gmail',
+            host: env.host,
             port: 587,
-            secure: true,
+            secure: false,
             auth: {
-                user: process.env.CODEIAL_GMAIL_USERNAME,
-                pass: process.env.CODEIAL_GMAIL_PASSWORD,
+                user: env.user,
+                pass: env.pass,
             },
+            
         });
 
         await transporter.sendMail({
-            from: 'NodeJs Auth',
+            from: 'support@sanam.tech',
             to: email,
             subject: subject,
             text: text,

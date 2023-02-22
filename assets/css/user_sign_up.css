@@ -54,10 +54,10 @@
         .user-sign-up .outline-effect form .input-with-icon i {
           margin-left: 5px;
           font-size: 1.2rem; }
-      .user-sign-up .outline-effect form #toggle-password {
+      .user-sign-up .outline-effect form #signup-toggle-password {
         cursor: pointer;
         transition: 0.3s all ease-in-out; }
-      .user-sign-up .outline-effect form #email-input, .user-sign-up .outline-effect form #pass-input, .user-sign-up .outline-effect form #name-input {
+      .user-sign-up .outline-effect form input {
         font-size: 1rem;
         margin-left: 15px;
         width: 90%;
@@ -65,9 +65,9 @@
         border-radius: 10px;
         color: white;
         border: none; }
-        .user-sign-up .outline-effect form #email-input:focus, .user-sign-up .outline-effect form #pass-input:focus, .user-sign-up .outline-effect form #name-input:focus {
+        .user-sign-up .outline-effect form input:focus {
           outline: none; }
-        .user-sign-up .outline-effect form #email-input:-webkit-autofill, .user-sign-up .outline-effect form #pass-input:-webkit-autofill, .user-sign-up .outline-effect form #name-input:-webkit-autofill {
+        .user-sign-up .outline-effect form input:-webkit-autofill {
           background-color: #1A2733 !important; }
       .user-sign-up .outline-effect form #submit-button {
         --primary-color: #645bff;

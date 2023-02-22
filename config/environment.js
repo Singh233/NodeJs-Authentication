@@ -17,7 +17,11 @@ const development = {
     fb_callbackURL: "http://localhost:8000/users/auth/facebook/callback",
 
     db: process.env.NODEJS_DB,
-    password_link: 'http://localhost:8000/users/password-reset/'
+    password_link: 'http://localhost:8000/users/password-reset/',
+
+    host: process.env.NODEJS_MAIL_HOST,
+    user: process.env.NODEJS_MAIL_USER,
+    pass: process.env.NODEJS_MAIL_PASS,
 }
 
 const production = {
@@ -35,9 +39,12 @@ const production = {
     fb_callbackURL: "https://sanam.tech/users/auth/facebook/callback",
 
     db: process.env.NODEJS_DB,
-    password_link: 'https://sanam.tech/users/password-reset/'
+    password_link: 'https://sanam.tech/users/password-reset/',
 
+    host: process.env.NODEJS_MAIL_HOST,
+    user: process.env.NODEJS_MAIL_USER,
+    pass: process.env.NODEJS_MAIL_PASS,
 
 }
 
-module.exports = production;
+module.exports = development;

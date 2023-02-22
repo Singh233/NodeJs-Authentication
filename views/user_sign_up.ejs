@@ -23,14 +23,13 @@
 
             <div class="input-with-icon">
                 <i class="fa-solid fa-key"></i>
-                <input id="pass-input" type="password" name="password" placeholder="Password" minlength="8"   required >
-                <i class="fa-solid fa-eye " id="toggle-password"></i>
+                <input  type="password" name="password" placeholder="Password" minlength="8"   required >
             </div>
 
             <div class="input-with-icon">
                 <i class="fa-solid fa-key"></i>
-                <input id="pass-input" type="password" name="confirm_password" placeholder="Confirm Password" minlength="8"   required >
-                <i class="fa-solid fa-eye animate__animated animate__faster" id="toggle-password"></i>
+                <input id="signup-pass-input" type="password" name="confirm_password" placeholder="Confirm Password" minlength="8"   required >
+                <i class="fa-solid fa-eye animate__animated animate__faster" id="signup-toggle-password"></i>
             </div>
             
             <button id="submit-button" type="submit">
@@ -57,4 +56,20 @@
 
 
 
+<script>
+    const signUpTogglePassword = document.getElementById('signup-toggle-password');
+    const signUpPassword = document.querySelector('#signup-pass-input');
 
+    signUpTogglePassword.addEventListener('click', function (e) {
+        // toggle the type attribute
+        const type =
+        signUpPassword.getAttribute('type') === 'password' ? 'text' : 'password';
+        signUpPassword.setAttribute('type', type);
+        // toggle the eye slash icon
+        this.classList.toggle('animate__zoomIn');
+
+        this.classList.toggle('fa-eye');
+        this.classList.toggle('fa-eye-slash');
+    });
+
+</script>
