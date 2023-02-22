@@ -26,6 +26,7 @@ https://sanam.tech/ 🚀
 - 📣 Display notifications for actions
 - 💼 Parallel Jobs for emails
 - 😶‍🌫️ Store encrypted password in Database
+- 🛠️ Fully Responsive for mobile and desktop devices
 
 
 ## Author
