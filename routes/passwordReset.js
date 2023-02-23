@@ -13,13 +13,19 @@ router.get("/:userId/:token", async (req, res) => {
     try {
 
         const user = await User.findById(req.params.userId);
-        if (!user) return res.status(400).send("User --> invalid link or expired");
+        if (!user) {
+            req.flash('error', 'Invalid link or expired');
+            return res.redirect('/');
+        } 
 
         const token = await Token.findOne({
             userId: user._id,
             token: req.params.token,
         });
-        if (!token) return res.status(400).send("Invalid link or expired");
+        if (!token) {
+            req.flash('error', 'Invalid link or expired');
+            return res.redirect('/');
+        } 
 
         return res.render('password_reset.ejs', {
             userId: req.params.userId,
