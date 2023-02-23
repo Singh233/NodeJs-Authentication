@@ -19,7 +19,9 @@ module.exports.create = async function(req, res) {
         return res.redirect('/');
     }
 
-    User.findOne({email: req.body.email}, function(error, user) {
+    let email = req.body.email.toLowerCase();
+
+    User.findOne({email: email}, function(error, user) {
         if (error) {
             req.flash('info', 'Something went wrong please try again later');
 
@@ -36,7 +38,7 @@ module.exports.create = async function(req, res) {
             bcrypt.genSalt(saltRounds).then((salt) => {
                 bcrypt.hash(password, salt)
                 .then((hash) => {
-                    User.create({...req.body, password: hash}, function(error, user) {
+                    User.create({...req.body, email: email, password: hash}, function(error, user) {
                         if (error) {
                             console.log("Error in creating user while signing up");
                             return;
@@ -104,7 +106,7 @@ module.exports.destroySession = function(req, res) {
 module.exports.forgotPassword = async function(req, res) {
     try {
 
-        const user = await User.findOne({ email: req.body.email });
+        const user = await User.findOne({ email: req.body.email.toLowerCase() });
         if (!user) {
             req.flash('warning', "User with given email doesnt exist");
             console.log('User with given email doesnt exist');

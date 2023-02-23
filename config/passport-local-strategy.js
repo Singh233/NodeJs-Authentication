@@ -17,6 +17,9 @@ passport.use(
         },
         function (req, email, password, done) {
             // Find a user and establish the identity
+            email = email.toLowerCase();
+            console.log(email);
+
             User.findOne({ email: email }, function (error, user) {
                 if (error) {
                     console.log('Error in finding user --> Passport');
