@@ -10,7 +10,7 @@ Node.js is a popular backend technology used for building web applications. It p
 
 ## Demo
 
-https://sanam.tech/ 🚀
+https://auth.sanam.tech/ 🚀
 
 
 ## Features
@@ -58,6 +58,12 @@ Install redis server on system and run
 
 ```bash
   https://redis.io/docs/getting-started/installation/
+```
+
+Setup Environment variables (Mac/Ubuntu)
+
+```bash
+  sudo vi ~/.bash_profile
 ```
 
 Start the NodeJs server
